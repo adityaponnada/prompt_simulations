@@ -50,6 +50,6 @@ length(unique(full_prompted_list))
 random_df <- as.data.frame(table(full_prompted_list))
 
 ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 
-  labs(title = "Frequency of each question asked", x = "\nQuestions", y="\nFrequency") +
+  labs(title = "Random selection", x = "\nQuestions", y="\nFrequency") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
         
