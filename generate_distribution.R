@@ -29,7 +29,10 @@ total_questions = length(question_list)
 total_prompts_day = as.integer(total_prompts_day - (total_prompts_day*0.1))
 
 ### Test draw any item at random from the list for the assumed total_prompts a day
+
+### Create an empty total prompt list
 final_prompt_list = list()
+### run for study duration
 for (i in 1:study_dur){
   print(paste0("For day: ", i))
   day_level_list = list()
@@ -49,6 +52,7 @@ length(unique(full_prompted_list))
 
 random_df <- as.data.frame(table(full_prompted_list))
 
+## Plot distribution
 ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 
   labs(title = "Random selection", x = "\nQuestions", y="\nFrequency") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
