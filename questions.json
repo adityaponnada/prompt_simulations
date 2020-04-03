@@ -1,0 +1,559 @@
+[
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 3600000,
+    "id": "sleep_0",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": true,
+    "max_prompts_per_day": 3,
+    "priority": 0,
+    "probability": 0.5,
+    "text": "Slept well yesterday?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "sitting_0",
+    "is_consecutive": true,
+    "is_context_sensitive": true,
+    "context":["SED"],
+    "is_first_prompt": false,
+    "max_prompts_per_day": 8,
+    "priority": 0,
+    "probability": 1,
+    "text": "Sitting right now?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "lying_1",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 7,
+    "priority": 0,
+    "probability": 1,
+    "text": "Lying down right now?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "active_2",
+    "is_consecutive": true,
+    "is_context_sensitive": true,
+    "context":["PA"],
+    "is_first_prompt": false,
+    "max_prompts_per_day": 3,
+    "priority": 0,
+    "probability": 1,
+    "text": "Physically active right now?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 1800000,
+    "id": "int_exer_3",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 3,
+    "priority": 0,
+    "probability": 1,
+    "text": "Intend to exercise today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 1800000,
+    "id": "int_sit_3",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 3,
+    "priority": 0,
+    "probability": 1,
+    "text": "Intend to sit less today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 1800000,
+    "id": "int_eat_3",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 3,
+    "priority": 0,
+    "probability": 1,
+    "text": "Intend to eat healthy today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "home_0",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 5,
+    "priority": 0,
+    "probability": 1,
+    "text": "At home?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "indoor_1",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 5,
+    "priority": 0,
+    "probability": 1,
+    "text": "Indoors right now?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "transit_2",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 3,
+    "priority": 0,
+    "probability": 1,
+    "text": "In transit?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "work_3",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 5,
+    "priority": 0,
+    "probability": 1,
+    "text": "At work?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 1800000,
+    "id": "habit_0",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": true,
+    "max_prompts_per_day": 5,
+    "priority": 0,
+    "probability": 1,
+    "text": "On usual routine today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 1800000,
+    "id": "prod_0",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 5,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feeling productive today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 1800000,
+    "id": "control_1",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 5,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feeling in control today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 1800000,
+    "id": "focus_3",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 5,
+    "priority": 0,
+    "probability": 1,
+    "text": "Focused today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 1800000,
+    "id": "procrastinate_4",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 5,
+    "priority": 0,
+    "probability": 1,
+    "text": "Procrastinating today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "pain_0",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": true,
+    "max_prompts_per_day": 5,
+    "priority": 0,
+    "probability": 1,
+    "text": "In pain/sick today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "tired_1",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 5,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feeling tired today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "stress_2",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 10,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feeling stressed today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "nervous_4",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 8,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feeling nervous today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "sad_7",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": true,
+    "max_prompts_per_day": 8,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feeling sad today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "happy_8",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 9,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feeling happy today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "energy_9",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 8,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feeling energetic today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "relaxed_10",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 8,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feeling relaxed today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "tense_11",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 8,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feeling tense today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },{
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "frustrate_12",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 8,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feeling frustrated today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },{
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "fatigue_13",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 8,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feeling fatigued today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },{
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "excite_14",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 8,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feeling excited today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 1800000,
+    "id": "hungry_0",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 9,
+    "priority": 0,
+    "probability": 1,
+    "text": "Hungry right now?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "alone_0",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 6,
+    "priority": 0,
+    "probability": 1,
+    "text": "Alone right now?",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  },
+  {
+    "answer_choices": [
+      "Friend(s)",
+      "Family member(s)",
+      "Other(s)"
+    ],
+    "consecutive_min_gap": 60000,
+    "id": "friend_1",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 5,
+    "priority": 0,
+    "probability": 1,
+    "text": "With ...",
+    "weekday_prompt": true,
+    "weekend_prompt": true
+  }
+]
