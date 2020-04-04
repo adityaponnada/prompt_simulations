@@ -219,7 +219,3 @@ ggplot(day_df, aes(x=selected_day_prompts, y=Freq)) + geom_bar(stat = "identity"
   theme(axis.text.x=element_text(angle = 70, hjust = 1))
 
 
-
-
-
-
