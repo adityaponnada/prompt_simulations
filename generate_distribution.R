@@ -16,7 +16,7 @@ question_list <- fromJSON(file="questions.json")
 question_df <- as.data.frame(question_list)
 
 ### Wake time assumption
-study_dur = 100
+study_dur = 270
 sleep_dur = 6.0
 DAY = 24.0
 BUFFER = 1.0
