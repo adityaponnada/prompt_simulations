@@ -53,12 +53,12 @@ full_prompted_list <- unlist(full_prompted_list)
 length(unique(full_prompted_list))
 length(full_prompted_list)
 
-random_df <- as.data.frame(table(full_prompted_list))
+random_df <- as.data.frame(prop.table(table(full_prompted_list)))
 random_df$full_prompted_list <- unlist(lapply(strsplit(as.character(random_df$full_prompted_list), "_"), '[[', 1))
 
 ## Plot distribution
 ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 
-  labs(title = "Random selection", x = "\nQuestions", y="\nFrequency") +
+  labs(title = "Random selection", x = "\nQuestions", y="\nFrequency(%)") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
 
 ### Including set types
@@ -99,12 +99,12 @@ full_prompted_list <- unlist(final_prompt_list, recursive = FALSE)
 full_prompted_list <- unlist(full_prompted_list)
 length(unique(full_prompted_list))
 length(full_prompted_list)
-random_df <- as.data.frame(table(full_prompted_list))
+random_df <- as.data.frame(prop.table(table(full_prompted_list)))
 random_df$full_prompted_list <- unlist(lapply(strsplit(as.character(random_df$full_prompted_list), "_"), '[[', 1))
 
 ## Plot distribution
 ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 
-  labs(title = "Set-based selection", x = "\nQuestions", y="\nFrequency") +
+  labs(title = "Set-based selection", x = "\nQuestions", y="\nFrequency(%)") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
 
 
@@ -144,9 +144,9 @@ for (i in 1:study_dur){
   
   for (j in 1:total_prompts_day){
     ## Filter out already maxed out prompts
-    print(paste0("Total questions in list: ", length(questions_day)))
+    # print(paste0("Total questions in list: ", length(questions_day)))
     questions_day <- list.filter(questions_day, count < max_prompts_per_day)
-    print(paste0("In filtered list: ", length(questions_day)))
+    # print(paste0("In filtered list: ", length(questions_day)))
     
     total_current_questons = length(questions_day)
     
@@ -165,12 +165,12 @@ full_prompted_list <- unlist(final_prompt_list, recursive = FALSE)
 full_prompted_list <- unlist(full_prompted_list)
 length(unique(full_prompted_list))
 length(full_prompted_list)
-random_df <- as.data.frame(table(full_prompted_list))
+random_df <- as.data.frame(prop.table(table(full_prompted_list)))
 random_df$full_prompted_list <- unlist(lapply(strsplit(as.character(random_df$full_prompted_list), "_"), '[[', 1))
 
 ## Plot distribution
 ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 
-  labs(title = "Set-based + max filter selection", x = "\nQuestions", y="\nFrequency") +
+  labs(title = "Set-based + max filter selection", x = "\nQuestions", y="\nFrequency(%)") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
 
 
