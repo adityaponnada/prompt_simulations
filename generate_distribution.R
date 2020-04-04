@@ -49,6 +49,7 @@ length(final_prompt_list)
 full_prompted_list <- unlist(final_prompt_list, recursive = FALSE)
 full_prompted_list <- unlist(full_prompted_list)
 length(unique(full_prompted_list))
+length(full_prompted_list)
 
 random_df <- as.data.frame(table(full_prompted_list))
 
@@ -56,4 +57,48 @@ random_df <- as.data.frame(table(full_prompted_list))
 ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 
   labs(title = "Random selection", x = "\nQuestions", y="\nFrequency") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
-        
+
+### Including set types
+set_types = c("External", "Internal", "Reflective", "Reactive")
+
+## No. of items Reflective - 7, Reactive - 3, Internal - 11, External - 10
+get_questions_day = c(5, 4, 3, 2)
+
+### Get the day-level question list first
+external_questions = list.filter(question_list, type=="External")
+internal_questions = list.filter(question_list, type=="Internal")
+reflective_questions = list.filter(question_list, type=="Reflective")
+reactive_questions = list.filter(question_list, type=="Reactive")
+
+### Create an empty total prompt list
+final_prompt_list = list()
+### run for study duration
+for (i in 1:study_dur){
+  print(paste0("For day: ", i))
+  ext_day = sample(external_questions, get_questions_day[1])
+  int_day = sample(internal_questions, get_questions_day[2])
+  refl_day = sample(reflective_questions, get_questions_day[3])
+  react_day = sample(reactive_questions, get_questions_day[4])
+  questions_day = c(ext_day, int_day, refl_day, react_day)
+  total_questions = length(questions_day)
+  day_level_list = list()
+  for (j in 1:total_prompts_day){
+    ## Generate a random number between 1 - total questions
+    rnd_index = sample(1:total_questions, 1)
+    day_level_list[j] <- questions_day[[rnd_index]]['id']
+  }
+  
+  final_prompt_list[[length(final_prompt_list) + 1]] <- day_level_list
+}
+
+length(final_prompt_list)
+full_prompted_list <- unlist(final_prompt_list, recursive = FALSE)
+full_prompted_list <- unlist(full_prompted_list)
+length(unique(full_prompted_list))
+length(full_prompted_list)
+random_df <- as.data.frame(table(full_prompted_list))
+
+## Plot distribution
+ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 
+  labs(title = "Set-based selection", x = "\nQuestions", y="\nFrequency") +
+  theme(axis.text.x = element_text(angle=70, hjust=1))
