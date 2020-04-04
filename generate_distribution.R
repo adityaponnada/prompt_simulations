@@ -5,6 +5,8 @@ library(dplyr)
 library(ggplot2)
 library(rjson)
 library(reshape2)
+library(stringi)
+library(rlist)
 
 ## read the questions json file
 
@@ -52,6 +54,7 @@ length(unique(full_prompted_list))
 length(full_prompted_list)
 
 random_df <- as.data.frame(table(full_prompted_list))
+random_df$full_prompted_list <- unlist(lapply(strsplit(as.character(random_df$full_prompted_list), "_"), '[[', 1))
 
 ## Plot distribution
 ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 
@@ -97,6 +100,7 @@ full_prompted_list <- unlist(full_prompted_list)
 length(unique(full_prompted_list))
 length(full_prompted_list)
 random_df <- as.data.frame(table(full_prompted_list))
+random_df$full_prompted_list <- unlist(lapply(strsplit(as.character(random_df$full_prompted_list), "_"), '[[', 1))
 
 ## Plot distribution
 ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 
@@ -162,6 +166,7 @@ full_prompted_list <- unlist(full_prompted_list)
 length(unique(full_prompted_list))
 length(full_prompted_list)
 random_df <- as.data.frame(table(full_prompted_list))
+random_df$full_prompted_list <- unlist(lapply(strsplit(as.character(random_df$full_prompted_list), "_"), '[[', 1))
 
 ## Plot distribution
 ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 

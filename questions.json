@@ -84,7 +84,7 @@
       "No"
     ],
     "consecutive_min_gap": 1800000,
-    "id": "int_exer_3",
+    "id": "int-exer_3",
     "is_consecutive": false,
     "is_context_sensitive": false,
     "is_first_prompt": false,
@@ -103,7 +103,7 @@
       "No"
     ],
     "consecutive_min_gap": 1800000,
-    "id": "int_sit_3",
+    "id": "int-sit_3",
     "is_consecutive": false,
     "is_context_sensitive": false,
     "is_first_prompt": false,
@@ -122,7 +122,7 @@
       "No"
     ],
     "consecutive_min_gap": 1800000,
-    "id": "int_eat_3",
+    "id": "int-eat_3",
     "is_consecutive": false,
     "is_context_sensitive": false,
     "is_first_prompt": false,
