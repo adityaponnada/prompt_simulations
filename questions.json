@@ -541,7 +541,7 @@
     "is_consecutive": true,
     "is_context_sensitive": false,
     "is_first_prompt": false,
-    "max_prompts_per_day": 4,
+    "max_prompts_per_day": 2,
     "priority": 0,
     "probability": 1,
     "text": "Hungry right now?",
