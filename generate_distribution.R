@@ -16,7 +16,7 @@ question_list <- fromJSON(file="questions.json")
 question_df <- as.data.frame(question_list)
 
 ### Wake time assumption
-study_dur = 270
+study_dur = 1000
 sleep_dur = 6.0
 DAY = 24.0
 BUFFER = 1.0
@@ -32,6 +32,14 @@ total_questions = length(question_list)
 
 ## Assuming 10% go to engagement/validation question
 total_prompts_day = as.integer(total_prompts_day - (total_prompts_day*0.1))
+
+### Add a category to each question type
+
+get_type  <- function(x, q_list){
+  temp_list <- list.filter(q_list, id == x)
+  type_result = temp_list[[1]]$type
+  return(type_result)
+}
 
 ### Test draw any item at random from the list for the assumed total_prompts a day
 
@@ -61,10 +69,16 @@ length(unique(full_prompted_list))
 length(full_prompted_list)
 
 random_df <- as.data.frame(prop.table(table(full_prompted_list)))
+
+for (i in 1:nrow(random_df)){
+  random_df$TYPE[i] <- get_type(as.character(random_df$full_prompted_list[i]), question_list)
+}
+
 random_df$full_prompted_list <- unlist(lapply(strsplit(as.character(random_df$full_prompted_list), "_"), '[[', 1))
 
+
 ## Plot distribution
-ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 
+ggplot(random_df, aes(x=full_prompted_list, y=Freq, fill=TYPE)) + geom_bar(stat="identity") + 
   labs(title = "Random selection", x = "\nQuestions", y="\nFrequency(%)") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
 
@@ -73,11 +87,21 @@ length(selected_day_prompts)
 selected_day_prompts <- unlist(unlist(selected_day_prompts, recursive = FALSE))
 length(unique(selected_day_prompts))
 day_df <- as.data.frame(table(selected_day_prompts))
+
+
+for (i in 1:nrow(day_df)){
+  day_df$TYPE[i] <- get_type(as.character(day_df$selected_day_prompts[i]), question_list)
+}
+
 day_df$selected_day_prompts <- unlist(lapply(strsplit(as.character(day_df$selected_day_prompts), "_"), '[[', 1))
 
-ggplot(day_df, aes(x=selected_day_prompts, y=Freq)) + geom_bar(stat = "identity") +
-  labs(title="Random selection | Day 1", x="\nQuestions", y="\nFrequency(%)") +
+ggplot(day_df, aes(x=selected_day_prompts, y=Freq, fill=TYPE)) + geom_bar(stat = "identity") +
+  labs(title="Random selection | Day n", x="\nQuestions", y="\nFrequency(%)") +
   theme(axis.text.x=element_text(angle = 70, hjust = 1))
+
+
+
+
 
 ### Including set types
 set_types = c("External", "Internal", "Reflective", "Reactive")

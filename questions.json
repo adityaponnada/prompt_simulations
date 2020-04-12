@@ -148,7 +148,7 @@
     "max_prompts_per_day": 4,
     "priority": 0,
     "probability": 1,
-    "text": "Feel like healthy today?",
+    "text": "Feel like eating healthy today?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "Reactive"
@@ -160,7 +160,7 @@
       "No"
     ],
     "consecutive_min_gap": 3600000,
-    "id": "feel-eat_3",
+    "id": "feel-sit_3",
     "is_consecutive": false,
     "is_context_sensitive": false,
     "is_first_prompt": false,
