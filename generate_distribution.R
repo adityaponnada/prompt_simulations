@@ -25,6 +25,9 @@ prompts_per_hour = 4.0
 
 total_prompts_day = as.integer(wake_dur*prompts_per_hour)
 
+## Filter out the context-triggered questions
+question_list = list.filter(question_list, is_context_sensitive == FALSE)
+
 total_questions = length(question_list)
 
 ## Assuming 10% go to engagement/validation question
