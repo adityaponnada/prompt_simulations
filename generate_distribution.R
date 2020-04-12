@@ -16,7 +16,7 @@ question_list <- fromJSON(file="questions.json")
 question_df <- as.data.frame(question_list)
 
 ### Wake time assumption
-study_dur = 270
+study_dur = 1000
 sleep_dur = 6.0
 DAY = 24.0
 BUFFER = 1.0
@@ -25,10 +25,21 @@ prompts_per_hour = 4.0
 
 total_prompts_day = as.integer(wake_dur*prompts_per_hour)
 
+## Filter out the context-triggered questions
+question_list = list.filter(question_list, is_context_sensitive == FALSE)
+
 total_questions = length(question_list)
 
 ## Assuming 10% go to engagement/validation question
 total_prompts_day = as.integer(total_prompts_day - (total_prompts_day*0.1))
+
+### Add a category to each question type
+
+get_type  <- function(x, q_list){
+  temp_list <- list.filter(q_list, id == x)
+  type_result = temp_list[[1]]$type
+  return(type_result)
+}
 
 ### Test draw any item at random from the list for the assumed total_prompts a day
 
@@ -58,10 +69,16 @@ length(unique(full_prompted_list))
 length(full_prompted_list)
 
 random_df <- as.data.frame(prop.table(table(full_prompted_list)))
+
+for (i in 1:nrow(random_df)){
+  random_df$TYPE[i] <- get_type(as.character(random_df$full_prompted_list[i]), question_list)
+}
+
 random_df$full_prompted_list <- unlist(lapply(strsplit(as.character(random_df$full_prompted_list), "_"), '[[', 1))
 
+
 ## Plot distribution
-ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 
+ggplot(random_df, aes(x=full_prompted_list, y=Freq, fill=TYPE)) + geom_bar(stat="identity") + 
   labs(title = "Random selection", x = "\nQuestions", y="\nFrequency(%)") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
 
@@ -70,23 +87,34 @@ length(selected_day_prompts)
 selected_day_prompts <- unlist(unlist(selected_day_prompts, recursive = FALSE))
 length(unique(selected_day_prompts))
 day_df <- as.data.frame(table(selected_day_prompts))
+
+
+for (i in 1:nrow(day_df)){
+  day_df$TYPE[i] <- get_type(as.character(day_df$selected_day_prompts[i]), question_list)
+}
+
 day_df$selected_day_prompts <- unlist(lapply(strsplit(as.character(day_df$selected_day_prompts), "_"), '[[', 1))
 
-ggplot(day_df, aes(x=selected_day_prompts, y=Freq)) + geom_bar(stat = "identity") +
-  labs(title="Random selection | Day 1", x="\nQuestions", y="\nFrequency(%)") +
+ggplot(day_df, aes(x=selected_day_prompts, y=Freq, fill=TYPE)) + geom_bar(stat = "identity") +
+  labs(title="Random selection | Day n", x="\nQuestions", y="\nFrequency(%)") +
   theme(axis.text.x=element_text(angle = 70, hjust = 1))
+
+
+
+
 
 ### Including set types
 set_types = c("External", "Internal", "Reflective", "Reactive")
-
-## No. of items Reflective - 7, Reactive - 3, Internal - 11, External - 10
-get_questions_day = c(5, 4, 3, 2)
 
 ### Get the day-level question list first
 external_questions = list.filter(question_list, type=="External")
 internal_questions = list.filter(question_list, type=="Internal")
 reflective_questions = list.filter(question_list, type=="Reflective")
 reactive_questions = list.filter(question_list, type=="Reactive")
+
+## No. of items External - 5(18%), Internal - 11(40%), Reflective - 6(21%), Reactive - 6(21%)
+## Total questions in a day level pool - 10
+get_questions_day = c(2, 4, 2, 2)
 
 ### Create an empty total prompt list
 final_prompt_list = list()
@@ -119,10 +147,15 @@ full_prompted_list <- unlist(full_prompted_list)
 length(unique(full_prompted_list))
 length(full_prompted_list)
 random_df <- as.data.frame(prop.table(table(full_prompted_list)))
+
+for (i in 1:nrow(random_df)){
+  random_df$TYPE[i] <- get_type(as.character(random_df$full_prompted_list[i]), question_list)
+}
+
 random_df$full_prompted_list <- unlist(lapply(strsplit(as.character(random_df$full_prompted_list), "_"), '[[', 1))
 
 ## Plot distribution
-ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 
+ggplot(random_df, aes(x=full_prompted_list, y=Freq, fill=TYPE)) + geom_bar(stat="identity") + 
   labs(title = "Set-based selection", x = "\nQuestions", y="\nFrequency(%)") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
 
@@ -131,11 +164,18 @@ length(selected_day_prompts)
 selected_day_prompts <- unlist(unlist(selected_day_prompts, recursive = FALSE))
 length(unique(selected_day_prompts))
 day_df <- as.data.frame(table(selected_day_prompts))
+
+
+for (i in 1:nrow(day_df)){
+  day_df$TYPE[i] <- get_type(as.character(day_df$selected_day_prompts[i]), question_list)
+}
+
 day_df$selected_day_prompts <- unlist(lapply(strsplit(as.character(day_df$selected_day_prompts), "_"), '[[', 1))
 
-ggplot(day_df, aes(x=selected_day_prompts, y=Freq)) + geom_bar(stat = "identity") +
-  labs(title="Set-based selection | Day 1", x="\nQuestions", y="\nFrequency(%)") +
+ggplot(day_df, aes(x=selected_day_prompts, y=Freq, fill=TYPE)) + geom_bar(stat = "identity") +
+  labs(title="Set-based selection | Day n", x="\nQuestions", y="\nFrequency") +
   theme(axis.text.x=element_text(angle = 70, hjust = 1))
+
 
 
 
@@ -143,14 +183,15 @@ ggplot(day_df, aes(x=selected_day_prompts, y=Freq)) + geom_bar(stat = "identity"
 ### Including set types
 set_types = c("External", "Internal", "Reflective", "Reactive")
 
-## No. of items Reflective - 7, Reactive - 3, Internal - 11, External - 10
-get_questions_day = c(5, 4, 3, 2)
-
 ### Get the day-level question list first
 external_questions = list.filter(question_list, type=="External")
 internal_questions = list.filter(question_list, type=="Internal")
 reflective_questions = list.filter(question_list, type=="Reflective")
 reactive_questions = list.filter(question_list, type=="Reactive")
+
+## No. of items External - 5(18%), Internal - 11(40%), Reflective - 6(21%), Reactive - 6(21%)
+## Total questions in a day level pool - 10
+get_questions_day = c(2, 4, 2, 2)
 
 ### Create an empty total prompt list
 final_prompt_list = list()
@@ -180,7 +221,6 @@ for (i in 1:study_dur){
     # print(paste0("In filtered list: ", length(questions_day)))
     
     total_current_questons = length(questions_day)
-    
     ## Generate a random number between 1 - total questions
     rnd_index = sample(1:total_current_questons, 1)
     day_level_list[j] <- questions_day[[rnd_index]]['id']
@@ -200,10 +240,15 @@ full_prompted_list <- unlist(full_prompted_list)
 length(unique(full_prompted_list))
 length(full_prompted_list)
 random_df <- as.data.frame(prop.table(table(full_prompted_list)))
+
+for (i in 1:nrow(random_df)){
+  random_df$TYPE[i] <- get_type(as.character(random_df$full_prompted_list[i]), question_list)
+}
+
 random_df$full_prompted_list <- unlist(lapply(strsplit(as.character(random_df$full_prompted_list), "_"), '[[', 1))
 
 ## Plot distribution
-ggplot(random_df, aes(x=full_prompted_list, y=Freq)) + geom_bar(stat="identity") + 
+ggplot(random_df, aes(x=full_prompted_list, y=Freq, fill=TYPE)) + geom_bar(stat="identity") + 
   labs(title = "Set-based + max filter selection", x = "\nQuestions", y="\nFrequency(%)") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
 
@@ -212,14 +257,15 @@ length(selected_day_prompts)
 selected_day_prompts <- unlist(unlist(selected_day_prompts, recursive = FALSE))
 length(unique(selected_day_prompts))
 day_df <- as.data.frame(table(selected_day_prompts))
+
+for (i in 1:nrow(day_df)){
+  day_df$TYPE[i] <- get_type(as.character(day_df$selected_day_prompts[i]), question_list)
+}
+
 day_df$selected_day_prompts <- unlist(lapply(strsplit(as.character(day_df$selected_day_prompts), "_"), '[[', 1))
 
-ggplot(day_df, aes(x=selected_day_prompts, y=Freq)) + geom_bar(stat = "identity") +
-  labs(title="Set-based + max filter selection | Day 1", x="\nQuestions", y="\nFrequency(%)") +
+ggplot(day_df, aes(x=selected_day_prompts, y=Freq, fill=TYPE)) + geom_bar(stat = "identity") +
+  labs(title="Set-based + max filter selection | Day n", x="\nQuestions", y="\nFrequency") +
   theme(axis.text.x=element_text(angle = 70, hjust = 1))
-
-
-
-
 
 
