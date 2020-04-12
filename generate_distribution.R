@@ -146,7 +146,8 @@ ggplot(day_df, aes(x=selected_day_prompts, y=Freq)) + geom_bar(stat = "identity"
 ### Including set types
 set_types = c("External", "Internal", "Reflective", "Reactive")
 
-## No. of items Reflective - 7, Reactive - 3, Internal - 11, External - 10
+## No. of items External - 10, Internal - 11, Reflective - 7, Reactive - 3
+## Total questions in a day - 10
 get_questions_day = c(5, 4, 3, 2)
 
 ### Get the day-level question list first
