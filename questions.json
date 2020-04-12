@@ -16,7 +16,7 @@
     "text": "Slept well yesterday?",
     "weekday_prompt": true,
     "weekend_prompt": true,
-	"type": "Reflective"
+	"type": "External"
   },
   {
     "answer_choices": [
@@ -47,7 +47,7 @@
     "consecutive_min_gap": 60000,
     "id": "lying_1",
     "is_consecutive": true,
-    "is_context_sensitive": false,
+    "is_context_sensitive": true,
     "is_first_prompt": false,
     "max_prompts_per_day": 8,
     "priority": 0,
@@ -83,7 +83,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 1800000,
+    "consecutive_min_gap": 3600000,
     "id": "int-exer_3",
     "is_consecutive": false,
     "is_context_sensitive": false,
@@ -102,7 +102,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 1800000,
+    "consecutive_min_gap": 3600000,
     "id": "int-sit_3",
     "is_consecutive": false,
     "is_context_sensitive": false,
@@ -121,7 +121,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 1800000,
+    "consecutive_min_gap": 3600000,
     "id": "int-eat_3",
     "is_consecutive": false,
     "is_context_sensitive": false,
@@ -140,10 +140,67 @@
       "Sort of",
       "No"
     ],
+    "consecutive_min_gap": 3600000,
+    "id": "feel-eat_3",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 4,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feel like healthy today?",
+    "weekday_prompt": true,
+    "weekend_prompt": true,
+	"type": "Reactive"
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 3600000,
+    "id": "feel-eat_3",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 4,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feel like sitting less?",
+    "weekday_prompt": true,
+    "weekend_prompt": true,
+	"type": "Reactive"
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 3600000,
+    "id": "feel-exer_3",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 4,
+    "priority": 0,
+    "probability": 1,
+    "text": "Feel like exercising?",
+    "weekday_prompt": true,
+    "weekend_prompt": true,
+	"type": "Reactive"
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
     "consecutive_min_gap": 60000,
     "id": "home_0",
     "is_consecutive": true,
-    "is_context_sensitive": false,
+    "is_context_sensitive": true,
     "is_first_prompt": false,
     "max_prompts_per_day": 2,
     "priority": 0,
@@ -162,7 +219,7 @@
     "consecutive_min_gap": 60000,
     "id": "indoor_1",
     "is_consecutive": true,
-    "is_context_sensitive": false,
+    "is_context_sensitive": true,
     "is_first_prompt": false,
     "max_prompts_per_day": 2,
     "priority": 0,
@@ -181,7 +238,7 @@
     "consecutive_min_gap": 60000,
     "id": "transit_2",
     "is_consecutive": true,
-    "is_context_sensitive": false,
+    "is_context_sensitive": true,
     "is_first_prompt": false,
     "max_prompts_per_day": 2,
     "priority": 0,
@@ -200,7 +257,7 @@
     "consecutive_min_gap": 60000,
     "id": "work_3",
     "is_consecutive": true,
-    "is_context_sensitive": false,
+    "is_context_sensitive": true,
     "is_first_prompt": false,
     "max_prompts_per_day": 2,
     "priority": 0,
@@ -216,7 +273,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 1800000,
+    "consecutive_min_gap": 3600000,
     "id": "habit_0",
     "is_consecutive": false,
     "is_context_sensitive": false,
@@ -235,7 +292,26 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 1800000,
+    "consecutive_min_gap": 3600000,
+    "id": "demands_0",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": true,
+    "max_prompts_per_day": 4,
+    "priority": 0,
+    "probability": 1,
+    "text": "Juggling several tasks?",
+    "weekday_prompt": true,
+    "weekend_prompt": true,
+	"type": "External"
+  },
+  {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 3600000,
     "id": "prod_0",
     "is_consecutive": false,
     "is_context_sensitive": false,
@@ -254,7 +330,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 1800000,
+    "consecutive_min_gap": 3600000,
     "id": "control_1",
     "is_consecutive": false,
     "is_context_sensitive": false,
@@ -273,7 +349,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 1800000,
+    "consecutive_min_gap": 3600000,
     "id": "focus_3",
     "is_consecutive": false,
     "is_context_sensitive": false,
@@ -292,7 +368,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 1800000,
+    "consecutive_min_gap": 3600000,
     "id": "procrastinate_4",
     "is_consecutive": false,
     "is_context_sensitive": false,
@@ -311,7 +387,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "pain_0",
     "is_consecutive": true,
     "is_context_sensitive": false,
@@ -330,12 +406,12 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "tired_1",
     "is_consecutive": false,
     "is_context_sensitive": false,
     "is_first_prompt": false,
-    "max_prompts_per_day": 6,
+    "max_prompts_per_day": 8,
     "priority": 0,
     "probability": 1,
     "text": "Feeling tired today?",
@@ -349,7 +425,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "stress_2",
     "is_consecutive": true,
     "is_context_sensitive": false,
@@ -368,7 +444,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "nervous_4",
     "is_consecutive": true,
     "is_context_sensitive": false,
@@ -387,7 +463,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "sad_7",
     "is_consecutive": true,
     "is_context_sensitive": false,
@@ -406,7 +482,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "happy_8",
     "is_consecutive": true,
     "is_context_sensitive": false,
@@ -425,7 +501,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "energy_9",
     "is_consecutive": true,
     "is_context_sensitive": false,
@@ -444,7 +520,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "relaxed_10",
     "is_consecutive": true,
     "is_context_sensitive": false,
@@ -463,7 +539,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "tense_11",
     "is_consecutive": true,
     "is_context_sensitive": false,
@@ -481,7 +557,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "frustrate_12",
     "is_consecutive": true,
     "is_context_sensitive": false,
@@ -499,7 +575,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "fatigue_13",
     "is_consecutive": true,
     "is_context_sensitive": false,
@@ -517,7 +593,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "excite_14",
     "is_consecutive": true,
     "is_context_sensitive": false,
@@ -536,12 +612,12 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 1800000,
+    "consecutive_min_gap": 3600000,
     "id": "hungry_0",
     "is_consecutive": true,
     "is_context_sensitive": false,
     "is_first_prompt": false,
-    "max_prompts_per_day": 2,
+    "max_prompts_per_day": 4,
     "priority": 0,
     "probability": 1,
     "text": "Hungry right now?",
@@ -555,7 +631,7 @@
       "Sort of",
       "No"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "alone_0",
     "is_consecutive": true,
     "is_context_sensitive": false,
@@ -574,7 +650,7 @@
       "Family member(s)",
       "Other(s)"
     ],
-    "consecutive_min_gap": 60000,
+    "consecutive_min_gap": 3600000,
     "id": "friend_1",
     "is_consecutive": true,
     "is_context_sensitive": false,
