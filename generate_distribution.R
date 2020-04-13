@@ -106,6 +106,8 @@ selected_day_prompts <- unlist(unlist(selected_day_prompts, recursive = FALSE))
 length(unique(selected_day_prompts))
 day_df <- as.data.frame(table(selected_day_prompts))
 
+write(selected_day_prompts, file="D:/uEMA_Simulation_plots/Improved_plots/random_day_list.txt", sep = ",")
+
 
 for (i in 1:nrow(day_df)){
   day_df$TYPE[i] <- get_type(as.character(day_df$selected_day_prompts[i]), question_list)
@@ -182,6 +184,7 @@ length(selected_day_prompts)
 selected_day_prompts <- unlist(unlist(selected_day_prompts, recursive = FALSE))
 length(unique(selected_day_prompts))
 day_df <- as.data.frame(table(selected_day_prompts))
+write(selected_day_prompts, file="D:/uEMA_Simulation_plots/Improved_plots/set_selection_list.txt", sep = ",")
 
 
 for (i in 1:nrow(day_df)){
@@ -275,6 +278,7 @@ length(selected_day_prompts)
 selected_day_prompts <- unlist(unlist(selected_day_prompts, recursive = FALSE))
 length(unique(selected_day_prompts))
 day_df <- as.data.frame(table(selected_day_prompts))
+write(selected_day_prompts, file="D:/uEMA_Simulation_plots/Improved_plots/max_filter_list.txt", sep = ",")
 
 for (i in 1:nrow(day_df)){
   day_df$TYPE[i] <- get_type(as.character(day_df$selected_day_prompts[i]), question_list)
@@ -285,7 +289,6 @@ day_df$selected_day_prompts <- unlist(lapply(strsplit(as.character(day_df$select
 ggplot(day_df, aes(x=selected_day_prompts, y=Freq, fill=TYPE)) + geom_bar(stat = "identity") +
   labs(title="Set-based + max filter selection | Day n", x="\nQuestions", y="\nFrequency") +
   theme(axis.text.x=element_text(angle = 70, hjust = 1))
-
 
 
 
@@ -385,6 +388,9 @@ length(selected_day_prompts)
 selected_day_prompts <- unlist(unlist(selected_day_prompts, recursive = FALSE))
 length(unique(selected_day_prompts))
 day_df <- as.data.frame(table(selected_day_prompts))
+
+### Write the list to a file
+write(selected_day_prompts, file="D:/uEMA_Simulation_plots/Improved_plots/min_gap_day_list.txt", sep = ",")
 
 for (i in 1:nrow(day_df)){
   day_df$TYPE[i] <- get_type(as.character(day_df$selected_day_prompts[i]), question_list)
