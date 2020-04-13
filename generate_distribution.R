@@ -12,8 +12,6 @@ library(rlist)
 
 question_list <- fromJSON(file="questions.json")
 
-### don't convert to df. Does not help
-question_df <- as.data.frame(question_list)
 
 ### Wake time assumption
 study_dur = 1000
@@ -40,6 +38,27 @@ get_type  <- function(x, q_list){
   type_result = temp_list[[1]]$type
   return(type_result)
 }
+
+### Get prelim plot of max prompt per day
+question_df <- data.frame(QUESTION = as.character(), MAX_PROMPT = as.integer(), TYPE = as.character())
+q_content <- c()
+max_prompt_content <- c()
+type_content <- c()
+for (i in 1:length(question_list)){
+  q_content <- c(q_content, as.character(question_list[[i]]['id']$id))
+  max_prompt_content <- c(max_prompt_content, question_list[[i]]['max_prompts_per_day']$max_prompts_per_day)
+  type_content <- c(type_content, as.character(question_list[[i]]['type']$type))
+}
+
+question_df2 <- cbind(q_content, type_content, max_prompt_content)
+question_df2 <- as.data.frame(question_df2)
+question_df2$max_prompt_content <- as.numeric(levels(question_df2$max_prompt_content))[question_df2$max_prompt_content]
+names(question_df2) <- c("QUESTION", "TYPE", "MAX_PROMPT")
+
+# Plot max prompt distriution
+ggplot(question_df2, aes(x=QUESTION, y=MAX_PROMPT, fill=TYPE)) + geom_bar(stat="identity") + 
+  labs(title = "Max prompts allowed", x = "\nQuestions", y="\nMax no. prompts") +
+  theme(axis.text.x = element_text(angle=70, hjust=1))
 
 ### Test draw any item at random from the list for the assumed total_prompts a day
 
