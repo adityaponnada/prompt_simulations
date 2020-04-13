@@ -40,7 +40,6 @@ get_type  <- function(x, q_list){
 }
 
 ### Get prelim plot of max prompt per day
-question_df <- data.frame(QUESTION = as.character(), MAX_PROMPT = as.integer(), TYPE = as.character())
 q_content <- c()
 max_prompt_content <- c()
 type_content <- c()
@@ -115,7 +114,7 @@ for (i in 1:nrow(day_df)){
 day_df$selected_day_prompts <- unlist(lapply(strsplit(as.character(day_df$selected_day_prompts), "_"), '[[', 1))
 
 ggplot(day_df, aes(x=selected_day_prompts, y=Freq, fill=TYPE)) + geom_bar(stat = "identity") +
-  labs(title="Random selection | Day n", x="\nQuestions", y="\nFrequency(%)") +
+  labs(title="Random selection | Day n", x="\nQuestions", y="\nFrequency") +
   theme(axis.text.x=element_text(angle = 70, hjust = 1))
 
 
