@@ -164,7 +164,13 @@ for (i in 1:study_dur){
   for (j in 1:total_prompts_day){
     ## Generate a random number between 1 - total questions
     rnd_index = sample(1:total_questions, 1)
-    day_level_list[j] <- questions_day[[rnd_index]]['id']
+    # day_level_list[j] <- questions_day[[rnd_index]]['id']
+    
+    rnd_completion = runif(1)
+    if (rnd_completion <= completion_rate){
+      # completion_counter = completion_counter + 1
+      day_level_list[j] <- questions_day[[rnd_index]]['id']
+    }
   }
   
   final_prompt_list[[length(final_prompt_list) + 1]] <- day_level_list
@@ -256,9 +262,17 @@ for (i in 1:study_dur){
     total_current_questons = length(questions_day)
     ## Generate a random number between 1 - total questions
     rnd_index = sample(1:total_current_questons, 1)
-    day_level_list[j] <- questions_day[[rnd_index]]['id']
-    quest_count = questions_day[[rnd_index]]['count']$count
-    questions_day[[rnd_index]]['count']$count = quest_count + 1.0
+    
+    rnd_completion = runif(1)
+    if (rnd_completion <= completion_rate){
+      # completion_counter = completion_counter + 1
+      day_level_list[j] <- questions_day[[rnd_index]]['id']
+      quest_count = questions_day[[rnd_index]]['count']$count
+      questions_day[[rnd_index]]['count']$count = quest_count + 1.0
+    }
+    
+    # day_level_list[j] <- questions_day[[rnd_index]]['id']
+    
   }
   
   final_prompt_list[[length(final_prompt_list) + 1]] <- day_level_list
