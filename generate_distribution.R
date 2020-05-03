@@ -66,6 +66,7 @@ ggplot(question_df2, aes(x=QUESTION, y=MAX_PROMPT, fill=TYPE)) + geom_bar(stat="
 ### Create an empty total prompt list
 final_prompt_list = list()
 selected_day_prompts = list()
+completion_counter_list = list()
 ### run for study duration
 for (i in 1:study_dur){
   print(paste0("For day: ", i))
@@ -76,14 +77,14 @@ for (i in 1:study_dur){
     rnd_index = sample(1:total_questions, 1)
     ## add an assumed completion rate to get only the answered prompts in the list
     rnd_completion = runif(1)
-    # print(rnd_completion)
-    if (rnd_completion < completion_rate){
-      # completion_counter = completion_counter + 1
-      # print(paste0("Prompt number: ", j, " Number: ", completion_counter, " rnd = ", rnd_completion))
+    if (rnd_completion <= completion_rate){
+      completion_counter = completion_counter + 1
       day_level_list[j] <- question_list[[rnd_index]]['id']
     }
     
   }
+  
+  completion_counter_list[i] <- completion_counter
   
   final_prompt_list[[length(final_prompt_list) + 1]] <- day_level_list
   if (i == 1){
