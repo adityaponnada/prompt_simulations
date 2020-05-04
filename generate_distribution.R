@@ -376,13 +376,25 @@ for (i in 1:study_dur){
     
     ## Generate a random number between 1 - total questions
     rnd_index = sample(1:total_current_questons, 1)
-    day_level_list[j] <- questions_day[[rnd_index]]['id']
-    quest_count = questions_day[[rnd_index]]['count']$count
-    questions_day[[rnd_index]]['count']$count = quest_count + 1.0
-    questions_day[[rnd_index]]['recent_index']$recent_index = j
+    # day_level_list[j] <- questions_day[[rnd_index]]['id']
+    # quest_count = questions_day[[rnd_index]]['count']$count
+    # questions_day[[rnd_index]]['count']$count = quest_count + 1.0
+    # questions_day[[rnd_index]]['recent_index']$recent_index = j
+    
+    
+    rnd_completion = runif(1)
+    if (rnd_completion <= completion_rate){
+      # completion_counter = completion_counter + 1
+      day_level_list[j] <- questions_day[[rnd_index]]['id']
+      quest_count = questions_day[[rnd_index]]['count']$count
+      questions_day[[rnd_index]]['count']$count = quest_count + 1.0
+      questions_day[[rnd_index]]['recent_index']$recent_index = j
+    }
     
     ## Add the filtered by gap questions back to the list
     questions_day <- c(questions_day, filtered_by_gap_questions)
+    
+    
   }
   
   final_prompt_list[[length(final_prompt_list) + 1]] <- day_level_list
