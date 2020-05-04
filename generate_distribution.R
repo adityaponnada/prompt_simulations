@@ -20,6 +20,8 @@ DAY = 24.0
 BUFFER = 1.0
 wake_dur = DAY - BUFFER - sleep_dur
 prompts_per_hour = 4.0
+completion_rate = 0.75
+completion_counter = 0
 
 total_prompts_day = as.integer(wake_dur*prompts_per_hour)
 
@@ -64,15 +66,25 @@ ggplot(question_df2, aes(x=QUESTION, y=MAX_PROMPT, fill=TYPE)) + geom_bar(stat="
 ### Create an empty total prompt list
 final_prompt_list = list()
 selected_day_prompts = list()
+completion_counter_list = list()
 ### run for study duration
 for (i in 1:study_dur){
   print(paste0("For day: ", i))
+  completion_counter = 0
   day_level_list = list()
   for (j in 1:total_prompts_day){
     ## Generate a random number between 1 - total questions
     rnd_index = sample(1:total_questions, 1)
-    day_level_list[j] <- question_list[[rnd_index]]['id']
+    ## add an assumed completion rate to get only the answered prompts in the list
+    rnd_completion = runif(1)
+    if (rnd_completion <= completion_rate){
+      completion_counter = completion_counter + 1
+      day_level_list[j] <- question_list[[rnd_index]]['id']
+    }
+    
   }
+  
+  completion_counter_list[i] <- completion_counter
   
   final_prompt_list[[length(final_prompt_list) + 1]] <- day_level_list
   if (i == 1){
@@ -152,7 +164,13 @@ for (i in 1:study_dur){
   for (j in 1:total_prompts_day){
     ## Generate a random number between 1 - total questions
     rnd_index = sample(1:total_questions, 1)
-    day_level_list[j] <- questions_day[[rnd_index]]['id']
+    # day_level_list[j] <- questions_day[[rnd_index]]['id']
+    
+    rnd_completion = runif(1)
+    if (rnd_completion <= completion_rate){
+      # completion_counter = completion_counter + 1
+      day_level_list[j] <- questions_day[[rnd_index]]['id']
+    }
   }
   
   final_prompt_list[[length(final_prompt_list) + 1]] <- day_level_list
@@ -244,9 +262,17 @@ for (i in 1:study_dur){
     total_current_questons = length(questions_day)
     ## Generate a random number between 1 - total questions
     rnd_index = sample(1:total_current_questons, 1)
-    day_level_list[j] <- questions_day[[rnd_index]]['id']
-    quest_count = questions_day[[rnd_index]]['count']$count
-    questions_day[[rnd_index]]['count']$count = quest_count + 1.0
+    
+    rnd_completion = runif(1)
+    if (rnd_completion <= completion_rate){
+      # completion_counter = completion_counter + 1
+      day_level_list[j] <- questions_day[[rnd_index]]['id']
+      quest_count = questions_day[[rnd_index]]['count']$count
+      questions_day[[rnd_index]]['count']$count = quest_count + 1.0
+    }
+    
+    # day_level_list[j] <- questions_day[[rnd_index]]['id']
+    
   }
   
   final_prompt_list[[length(final_prompt_list) + 1]] <- day_level_list
@@ -350,13 +376,25 @@ for (i in 1:study_dur){
     
     ## Generate a random number between 1 - total questions
     rnd_index = sample(1:total_current_questons, 1)
-    day_level_list[j] <- questions_day[[rnd_index]]['id']
-    quest_count = questions_day[[rnd_index]]['count']$count
-    questions_day[[rnd_index]]['count']$count = quest_count + 1.0
-    questions_day[[rnd_index]]['recent_index']$recent_index = j
+    # day_level_list[j] <- questions_day[[rnd_index]]['id']
+    # quest_count = questions_day[[rnd_index]]['count']$count
+    # questions_day[[rnd_index]]['count']$count = quest_count + 1.0
+    # questions_day[[rnd_index]]['recent_index']$recent_index = j
+    
+    
+    rnd_completion = runif(1)
+    if (rnd_completion <= completion_rate){
+      # completion_counter = completion_counter + 1
+      day_level_list[j] <- questions_day[[rnd_index]]['id']
+      quest_count = questions_day[[rnd_index]]['count']$count
+      questions_day[[rnd_index]]['count']$count = quest_count + 1.0
+      questions_day[[rnd_index]]['recent_index']$recent_index = j
+    }
     
     ## Add the filtered by gap questions back to the list
     questions_day <- c(questions_day, filtered_by_gap_questions)
+    
+    
   }
   
   final_prompt_list[[length(final_prompt_list) + 1]] <- day_level_list
