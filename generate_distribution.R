@@ -109,6 +109,8 @@ for (i in 1:study_dur){
 
 ## Clear the NA row
 question_df_with_day <- question_df_with_day[-1,]
+question_df_with_day$QUESTION <- lapply(strsplit(as.character(question_df_with_day$QUESTION), "_"), '[[', 1)
+
 
 
 length(final_prompt_list)
