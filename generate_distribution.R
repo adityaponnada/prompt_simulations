@@ -8,13 +8,19 @@ library(reshape2)
 library(stringi)
 library(rlist)
 
+# The purpose of this script is to simulate uEMA prompting strategies.
+# In addiion, we want to compute the expected values of: 
+#   1) % of the time the question will be answered throughout the study
+#   2) number of days a question will show up throughout the study
+
+
 ## read the questions json file
 
 question_list <- fromJSON(file="questions.json")
 
 
 ### Wake time assumption
-study_dur = 1000
+study_dur = 2000
 sleep_dur = 6.0
 DAY = 24.0
 BUFFER = 1.0
@@ -112,12 +118,16 @@ ggplot(random_df, aes(x=full_prompted_list, y=Freq, fill=TYPE)) + geom_bar(stat=
   labs(title = "Random selection", x = "\nQuestions", y="\nFrequency(%)") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
 
+# Save the study duration prompt distribution file
+write.csv(random_df, file="D:/uEMA_Simulation_plots/Improved_plots/random_prompting.csv", sep = ",")
+
 ## Plot for a given day's prompting
 length(selected_day_prompts)
 selected_day_prompts <- unlist(unlist(selected_day_prompts, recursive = FALSE))
 length(unique(selected_day_prompts))
 day_df <- as.data.frame(table(selected_day_prompts))
 
+# Save the sequence of plotting for a random day
 write(selected_day_prompts, file="D:/uEMA_Simulation_plots/Improved_plots/random_day_list.txt", sep = ",")
 
 
@@ -196,6 +206,9 @@ random_df$full_prompted_list <- unlist(lapply(strsplit(as.character(random_df$fu
 ggplot(random_df, aes(x=full_prompted_list, y=Freq, fill=TYPE)) + geom_bar(stat="identity") + 
   labs(title = "Set-based selection", x = "\nQuestions", y="\nFrequency(%)") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
+
+# Save the study duration prompt distribution file
+write.csv(random_df, file="D:/uEMA_Simulation_plots/Improved_plots/set_based_prompting.csv", sep = ",")
 
 ## Plot for a given day's prompting
 length(selected_day_prompts)
@@ -298,6 +311,9 @@ random_df$full_prompted_list <- unlist(lapply(strsplit(as.character(random_df$fu
 ggplot(random_df, aes(x=full_prompted_list, y=Freq, fill=TYPE)) + geom_bar(stat="identity") + 
   labs(title = "Set-based + max filter selection", x = "\nQuestions", y="\nFrequency(%)") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
+
+# Save the study duration prompt distribution file
+write.csv(random_df, file="D:/uEMA_Simulation_plots/Improved_plots/set_based_mxed_out_prompting.csv", sep = ",")
 
 ## Plot for a given day's prompting
 length(selected_day_prompts)
@@ -420,6 +436,9 @@ random_df$full_prompted_list <- unlist(lapply(strsplit(as.character(random_df$fu
 ggplot(random_df, aes(x=full_prompted_list, y=Freq, fill=TYPE)) + geom_bar(stat="identity") + 
   labs(title = "Set-based + max filter + min gap", x = "\nQuestions", y="\nFrequency(%)") +
   theme(axis.text.x = element_text(angle=70, hjust=1))
+
+# Save the study duration prompt distribution file
+write.csv(random_df, file="D:/uEMA_Simulation_plots/Improved_plots/set_based_max_out_min_gap_prompting.csv", sep = ",")
 
 ## Plot for a given day's prompting
 length(selected_day_prompts)
