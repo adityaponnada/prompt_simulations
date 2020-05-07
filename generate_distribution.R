@@ -7,6 +7,7 @@ library(rjson)
 library(reshape2)
 library(stringi)
 library(rlist)
+library(plyr)
 
 # The purpose of this script is to simulate uEMA prompting strategies.
 # In addiion, we want to compute the expected values of: 
@@ -110,6 +111,13 @@ for (i in 1:study_dur){
 ## Clear the NA row
 question_df_with_day <- question_df_with_day[-1,]
 question_df_with_day$QUESTION <- lapply(strsplit(as.character(question_df_with_day$QUESTION), "_"), '[[', 1)
+
+## Convert to factors
+question_df_with_day$QUESTION <- as.factor(unlist(question_df_with_day$QUESTION))
+question_df_with_day$DAY <- as.factor(question_df_with_day$DAY)
+
+## Create a contingency table with question and the day times
+question_number_of_days <- aggregate(DAY ~ QUESTION, question_df_with_day, function(x) length(unique(x)))
 
 
 
