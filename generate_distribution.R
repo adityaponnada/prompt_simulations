@@ -43,6 +43,7 @@ total_prompts_day = as.integer(total_prompts_day - (total_prompts_day*0.1))
 ### Add a category to each question type
 
 get_type  <- function(x, q_list){
+  # id == x
   temp_list <- list.filter(q_list, id == x)
   type_result = temp_list[[1]]$type
   return(type_result)
@@ -110,14 +111,38 @@ for (i in 1:study_dur){
 
 ## Clear the NA row
 question_df_with_day <- question_df_with_day[-1,]
+
+# Add question category type:
+for (i in 1:nrow(question_df_with_day)){
+  question_df_with_day$TYPE[i] <- get_type(as.character(question_df_with_day$QUESTION[i]), question_list)
+}
+
 question_df_with_day$QUESTION <- lapply(strsplit(as.character(question_df_with_day$QUESTION), "_"), '[[', 1)
 
 ## Convert to factors
 question_df_with_day$QUESTION <- as.factor(unlist(question_df_with_day$QUESTION))
 question_df_with_day$DAY <- as.factor(question_df_with_day$DAY)
 
+# Create a condensed mapped data frame for question and type
+question_type_map <- unique(question_df_with_day[c("QUESTION", "TYPE")])
+
+get_type_for_df <- function (x){
+  question_type = question_type_map$TYPE[question_type_map$QUESTION == x]
+  return (question_type)
+  
+}
+
 ## Create a contingency table with question and the day times
 question_number_of_days <- aggregate(DAY ~ QUESTION, question_df_with_day, function(x) length(unique(x)))
+question_number_of_days$DAY_PERCENT <- question_number_of_days$DAY/study_dur
+
+question_number_of_days$TYPE <- lapply(question_number_of_days$QUESTION, get_type_for_df)
+question_number_of_days$TYPE <- as.factor(unlist(question_number_of_days$TYPE))
+
+# Write this to a file before plotting
+write.csv(question_number_of_days, file = "D:/uEMA_Simulation_plots/Improved_plots/random_prompting_question_days.csv", sep = ",")
+
+# Plot with number of days
 
 
 
