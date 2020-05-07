@@ -73,6 +73,8 @@ ggplot(question_df2, aes(x=QUESTION, y=MAX_PROMPT, fill=TYPE)) + geom_bar(stat="
 final_prompt_list = list()
 selected_day_prompts = list()
 completion_counter_list = list()
+question_df_with_day = data.frame(QUESTION = NA, DAY = NA)
+loop_counter = 0
 ### run for study duration
 for (i in 1:study_dur){
   print(paste0("For day: ", i))
@@ -86,6 +88,13 @@ for (i in 1:study_dur){
     if (rnd_completion <= completion_rate){
       completion_counter = completion_counter + 1
       day_level_list[j] <- question_list[[rnd_index]]['id']
+      loop_counter = loop_counter + 1
+      # print(paste0("Loop counter: ", loop_counter))
+      # question_df_with_day$QUESTION[loop_counter] <- question_list[[rnd_index]]['id']$id
+      # question_df_with_day$DAY[loop_counter] <- i
+      x1 <- question_list[[rnd_index]]['id']$id
+      x2 <- i
+      question_df_with_day <- rbind(question_df_with_day, c(x1, x2))
     }
     
   }
@@ -97,6 +106,10 @@ for (i in 1:study_dur){
     selected_day_prompts = day_level_list 
   }
 }
+
+## Clear the NA row
+question_df_with_day <- question_df_with_day[-1,]
+
 
 length(final_prompt_list)
 full_prompted_list <- unlist(final_prompt_list, recursive = FALSE)
@@ -458,4 +471,15 @@ day_df$selected_day_prompts <- unlist(lapply(strsplit(as.character(day_df$select
 ggplot(day_df, aes(x=selected_day_prompts, y=Freq, fill=TYPE)) + geom_bar(stat = "identity") +
   labs(title="Set-based + max filter + min gap | Day n", x="\nQuestions", y="\nFrequency") +
   theme(axis.text.x=element_text(angle = 70, hjust = 1))
+
+
+
+# test code (to be removed later)
+loop_times = 0
+for (outer in 1:10){
+  for (inner in 1:5){
+    loop_times = loop_times + 1
+    print(paste0("i ", outer, " j ", inner," loop ", loop_times))
+  }
+}
 
