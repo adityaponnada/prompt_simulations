@@ -143,7 +143,13 @@ question_number_of_days$TYPE <- as.factor(unlist(question_number_of_days$TYPE))
 write.csv(question_number_of_days, file = "D:/uEMA_Simulation_plots/Improved_plots/random_prompting_question_days.csv", sep = ",")
 
 # Plot with number of days
+ggplot(question_number_of_days, aes(x=QUESTION, y=DAY, fill=TYPE)) + geom_bar(stat="identity") + 
+  labs(title = "Random selection | daywise distribution", x = "\nQuestions", y="\nNumber of days") +
+  theme(axis.text.x = element_text(angle=70, hjust=1))
 
+ggplot(question_number_of_days, aes(x=QUESTION, y=DAY_PERCENT, fill=TYPE)) + geom_bar(stat="identity") + 
+  labs(title = "Random selection | daywise distribution", x = "\nQuestions", y="\n% of days") +
+  theme(axis.text.x = element_text(angle=70, hjust=1))
 
 
 length(final_prompt_list)
