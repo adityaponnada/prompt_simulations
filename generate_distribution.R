@@ -21,7 +21,7 @@ question_list <- fromJSON(file="questions.json")
 
 
 ### Wake time assumption
-study_dur = 2000
+study_dur = 10000
 sleep_dur = 8.0
 DAY = 24.0
 BUFFER = 1.0
