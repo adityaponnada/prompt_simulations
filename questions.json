@@ -16,7 +16,7 @@
     "text": "Slept well yesterday?",
     "weekday_prompt": true,
     "weekend_prompt": true,
-	"type": "External"
+	"type": "Internal"
   },
   {
     "answer_choices": [
@@ -148,7 +148,7 @@
     "max_prompts_per_day": 6,
     "priority": 0,
     "probability": 1,
-    "text": "Feel like eating healthy today?",
+    "text": "Feel like eating healthy?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "Reactive"
@@ -304,6 +304,24 @@
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "External"
+  },{
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 3600000,
+    "id": "burden_0",
+    "is_consecutive": false,
+    "is_context_sensitive": false,
+    "is_first_prompt": true,
+    "max_prompts_per_day": 6,
+    "priority": 0,
+    "probability": 1,
+    "text": "Workload increasing?",
+    "weekday_prompt": true,
+    "weekend_prompt": true,
+	"type": "External"
   },
   {
     "answer_choices": [
@@ -414,7 +432,7 @@
     "max_prompts_per_day": 10,
     "priority": 0,
     "probability": 1,
-    "text": "Feeling tired today?",
+    "text": "Feeling tired?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "Internal"
@@ -433,7 +451,7 @@
     "max_prompts_per_day": 10,
     "priority": 0,
     "probability": 1,
-    "text": "Feeling stressed today?",
+    "text": "Feeling stressed?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "Internal"
@@ -452,7 +470,7 @@
     "max_prompts_per_day": 10,
     "priority": 0,
     "probability": 1,
-    "text": "Feeling nervous today?",
+    "text": "Feeling nervous?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "Internal"
@@ -471,7 +489,7 @@
     "max_prompts_per_day": 10,
     "priority": 0,
     "probability": 1,
-    "text": "Feeling sad today?",
+    "text": "Feeling sad?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "Internal"
@@ -490,7 +508,7 @@
     "max_prompts_per_day": 10,
     "priority": 0,
     "probability": 1,
-    "text": "Feeling happy today?",
+    "text": "Feeling happy?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "Internal"
@@ -509,7 +527,7 @@
     "max_prompts_per_day": 10,
     "priority": 0,
     "probability": 1,
-    "text": "Feeling energetic today?",
+    "text": "Feeling energetic?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "Internal"
@@ -528,7 +546,7 @@
     "max_prompts_per_day": 10,
     "priority": 0,
     "probability": 1,
-    "text": "Feeling relaxed today?",
+    "text": "Feeling relaxed?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "Internal"
@@ -547,7 +565,7 @@
     "max_prompts_per_day": 10,
     "priority": 0,
     "probability": 1,
-    "text": "Feeling tense today?",
+    "text": "Feeling tense?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "Internal"
@@ -565,7 +583,7 @@
     "max_prompts_per_day": 10,
     "priority": 0,
     "probability": 1,
-    "text": "Feeling frustrated today?",
+    "text": "Feeling frustrated?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "Internal"
@@ -583,7 +601,7 @@
     "max_prompts_per_day": 10,
     "priority": 0,
     "probability": 1,
-    "text": "Feeling fatigued today?",
+    "text": "Feeling fatigued?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "Internal"
@@ -601,7 +619,7 @@
     "max_prompts_per_day": 10,
     "priority": 0,
     "probability": 1,
-    "text": "Feeling excited today?",
+    "text": "Feeling excited?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "Internal"
@@ -620,10 +638,10 @@
     "max_prompts_per_day": 6,
     "priority": 0,
     "probability": 1,
-    "text": "Hungry right now?",
+    "text": "Feeling hungry?",
     "weekday_prompt": true,
     "weekend_prompt": true,
-	"type": "Reactive"
+	"type": "Internal"
   },
   {
     "answer_choices": [
@@ -646,9 +664,9 @@
   },
   {
     "answer_choices": [
-      "Friend(s)",
-      "Family member(s)",
-      "Other(s)"
+      "Yes",
+      "Sort of",
+      "No"
     ],
     "consecutive_min_gap": 3600000,
     "id": "friend_1",
@@ -658,7 +676,25 @@
     "max_prompts_per_day": 6,
     "priority": 0,
     "probability": 1,
-    "text": "With ...",
+    "text": "With friend(s) now?",
+    "weekday_prompt": true,
+    "weekend_prompt": true,
+	"type": "External"
+  }, {
+    "answer_choices": [
+      "Yes",
+      "Sort of",
+      "No"
+    ],
+    "consecutive_min_gap": 3600000,
+    "id": "family_1",
+    "is_consecutive": true,
+    "is_context_sensitive": false,
+    "is_first_prompt": false,
+    "max_prompts_per_day": 6,
+    "priority": 0,
+    "probability": 1,
+    "text": "With family member(s) now?",
     "weekday_prompt": true,
     "weekend_prompt": true,
 	"type": "External"
