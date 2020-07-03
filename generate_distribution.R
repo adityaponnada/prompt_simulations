@@ -105,7 +105,18 @@ for (i in 1:study_dur){
 }
 
 ## Clear the NA row
+## Preview this before proceesing!!!
 question_df_with_day <- question_df_with_day[-1,]
+
+question_count_per_day <- question_df_with_day
+question_count_per_day <- count(question_count_per_day)
+
+### Get descriptives of each question min and max number of times a question can get asked per day
+per_question_summary <- describeBy(question_count_per_day$freq, group = question_count_per_day$QUESTION)
+per_question_summary <- do.call("rbind", per_question_summary)
+## Write the min per day per question to a file
+write.csv(per_question_summary, file="D:/uEMA_Simulation_plots/Improved_plots/random_selection_per_question_summary.csv", sep = ",", row.names = TRUE)
+
 
 # Add question category type:
 for (i in 1:nrow(question_df_with_day)){
@@ -514,6 +525,7 @@ for (i in 1:study_dur){
       
       question_id <- questions_day[[rnd_index]]['id']$id
       day_into_study <- i
+      # Use this table to get not aggregate but the frequency of occurence for each day?
       question_df_with_day <- rbind(question_df_with_day, c(question_id, day_into_study))
       
       questions_day[[rnd_index]]['count']$count = quest_count + 1.0
@@ -528,6 +540,7 @@ for (i in 1:study_dur){
   
   final_prompt_list[[length(final_prompt_list) + 1]] <- day_level_list
   if (i == 1){
+    # create a concatinated day level list here?
     selected_day_prompts = day_level_list 
   }
 }
