@@ -548,6 +548,15 @@ for (i in 1:study_dur){
 ## Clear the NA row
 question_df_with_day <- question_df_with_day[-1,]
 
+question_count_per_day <- question_df_with_day
+question_count_per_day <- count(question_count_per_day)
+
+### Get descriptives of each question min and max number of times a question can get asked per day
+per_question_summary <- describeBy(question_count_per_day$freq, group = question_count_per_day$QUESTION)
+per_question_summary <- do.call("rbind", per_question_summary)
+## Write the min per day per question to a file
+write.csv(per_question_summary, file="D:/uEMA_Simulation_plots/Improved_plots/set_based_max_mingap_selection_per_question_summary.csv", sep = ",", row.names = TRUE)
+
 question_df_with_day$QUESTION <- lapply(strsplit(as.character(question_df_with_day$QUESTION), "_"), '[[', 1)
 
 ## Convert to factors
