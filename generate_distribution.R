@@ -24,7 +24,7 @@ question_list <- fromJSON(file="questions.json")
 study_dur = 10000
 sleep_dur = 8.0
 DAY = 24.0
-BUFFER = 1.0
+BUFFER = 0.5
 wake_dur = DAY - BUFFER - sleep_dur
 prompts_per_hour = 4.0
 completion_rate = 0.75
@@ -105,7 +105,7 @@ for (i in 1:study_dur){
 }
 
 ## Clear the NA row
-## Preview this before proceesing!!!
+## Preview this before proceeding!!!
 question_df_with_day <- question_df_with_day[-1,]
 
 question_count_per_day <- question_df_with_day
