@@ -8,6 +8,7 @@ library(reshape2)
 library(stringi)
 library(rlist)
 library(plyr)
+options(digits=4)
 
 # The purpose of this script is to simulate uEMA prompting strategies.
 # In addiion, we want to compute the expected values of: 
@@ -21,7 +22,7 @@ question_list <- fromJSON(file="questions.json")
 
 
 ### Wake time assumption
-study_dur = 10000
+study_dur = 10000 # 250 * 270 uEMA days --> change to 67500
 sleep_dur = 8.0
 DAY = 24.0
 BUFFER = 0.5
@@ -61,7 +62,8 @@ for (i in 1:length(question_list)){
 
 question_df2 <- cbind(q_content, type_content, max_prompt_content)
 question_df2 <- as.data.frame(question_df2)
-question_df2$max_prompt_content <- as.numeric(levels(question_df2$max_prompt_content))[question_df2$max_prompt_content]
+# question_df2$max_prompt_content <- as.numeric(levels(question_df2$max_prompt_content))[question_df2$max_prompt_content]
+question_df2$max_prompt_content <- as.numeric(question_df2$max_prompt_content)
 names(question_df2) <- c("QUESTION", "TYPE", "MAX_PROMPT")
 
 # Plot max prompt distriution
